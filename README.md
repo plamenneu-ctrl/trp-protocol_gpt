@@ -1,1 +1,0 @@
-# trp-protocol_gpt
