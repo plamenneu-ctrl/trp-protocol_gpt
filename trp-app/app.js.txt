@@ -1,0 +1,37 @@
+let sessions = JSON.parse(localStorage.getItem("sessions")) || [];
+
+function showSession() {
+  document.getElementById("session").classList.remove("hidden");
+}
+
+function updateValue(val) {
+  document.getElementById("value").innerText = val;
+}
+
+function save() {
+  let text = document.getElementById("text").value;
+  let distress = document.getElementById("slider").value;
+
+  sessions.push({ text, distress });
+
+  localStorage.setItem("sessions", JSON.stringify(sessions));
+
+  render();
+}
+
+function render() {
+  let list = document.getElementById("list");
+  list.innerHTML = "";
+
+  sessions.forEach(s => {
+    list.innerHTML += `
+      <div class="card">
+        <p>${s.text}</p>
+        <small>Distress: ${s.distress}</small>
+      </div>
+    `;
+  });
+}
+
+// зарежда при стартиране
+render();
